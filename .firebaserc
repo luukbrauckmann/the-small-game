@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "the-small-game": {
+      "hosting": {
+        "the-small-game": [
+          "the-small-game"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "the-small-game"
+  }
+}

@@ -1,0 +1,14 @@
+<nav>
+	<div class="flex align-items-center p-2" *ngIf="isSignedIn">
+		<div class="flex-grow-1">
+			<p-menubar styleClass="navigation-menu" [model]="navMenuItems"></p-menubar>
+		</div>
+		<div>
+			<button pButton type="button" class="p-button-rounded p-button-text p-button-plain" icon="pi pi-user" [label]="user?.firstName || ''"
+				(click)="displayUserMenu = true"></button>
+			<p-sidebar [(visible)]="displayUserMenu" appendTo="body" position="right" [baseZIndex]="10000">
+				<p-menu [model]="userMenuItems"></p-menu>
+			</p-sidebar>
+		</div>
+	</div>
+</nav>

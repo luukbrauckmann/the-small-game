@@ -6,8 +6,15 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationComponent } from './authentication.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { AuthenticationService } from './services/authentication.service';
 
 import { AuthenticationGuard } from '../guards/authentication.guard';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
 
 const routes: Routes = [
 	{
@@ -36,7 +43,13 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-		RouterModule.forRoot(routes)
-  ]
+		RouterModule.forRoot(routes),
+		ReactiveFormsModule,
+		CardModule,
+		InputTextModule,
+		PasswordModule,
+		ButtonModule
+  ],
+	providers: [ AuthenticationService ]
 })
 export class AuthenticationModule { }

@@ -1,1 +1,35 @@
-<p>sign-up works!</p>
+<div class="grid">
+	<div class="col-12 sm:col-8 sm:col-offset-2 md:col-6 md:col-offset-3 lg:col-4 lg:col-offset-4">
+		<p-card header="Aanmelden" styleClass="empty-card-footer">
+			<form [formGroup]="form" (ngSubmit)="signUp()">
+				<div class="field grid">
+					<label for="firstName" class="col-4">Voornaam</label>
+					<div class="col-8">
+						<input pInputText id="firstName" type="text" class="w-full" formControlName="firstName">
+					</div>
+				</div>
+				<div class="field grid">
+					<label for="lastName" class="col-4">Achternaam</label>
+					<div class="col-8">
+						<input pInputText id="lastName" type="text" class="w-full" formControlName="lastName">
+					</div>
+				</div>
+				<div class="field grid">
+					<label for="email" class="col-4">E-mail</label>
+					<div class="col-8">
+						<input pInputText id="email" type="text" class="w-full" formControlName="email">
+					</div>
+				</div>
+				<div class="field grid">
+					<label for="password" class="col-4">Wachtwoord</label>
+					<div class="col-8">
+						<input pPassword id="password" type="password" class="w-full" formControlName="password" >
+					</div>
+				</div>
+				<div>
+					<button pButton type="submit" class="w-full" label="Aanmelden" [disabled]="form.invalid"></button>
+				</div>
+			</form>
+		</p-card>
+	</div>
+</div>

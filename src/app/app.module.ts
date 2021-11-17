@@ -1,27 +1,48 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Routes, RouterModule } from '@angular/router';
+import { MenubarModule } from 'primeng/menubar';
+import { ToastModule } from 'primeng/toast';
+import { MenuModule } from 'primeng/menu';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
 
 import { AppComponent } from './app.component';
-import { AuthenticationModule } from './authentication/authentication.module';
+import { NavigationComponent } from './ui/navigation/navigation.component';
+import { FooterComponent } from './ui/footer/footer.component';
 
+import { environment } from '../environments/environment';
+
+import { AuthenticationModule } from './authentication/authentication.module';
+import { HomeModule } from './home/home.module';
+import { UsersModule } from './users/users.module';
+import { AngularFireModule } from '@angular/fire/compat';
+import { MessageService } from 'primeng/api';
+
+const routes: Routes = [];
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		NavigationComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,
-		provideFirebaseApp(() => initializeApp(environment.firebase)),
-		provideAuth(() => getAuth()),
-		provideFirestore(() => getFirestore()),
-		AuthenticationModule
+		BrowserAnimationsModule,
+		RouterModule.forRoot(routes),
+		AngularFireModule.initializeApp(environment.firebase),
+		MenubarModule,
+		MenuModule,
+		ButtonModule,
+		SidebarModule,
+		ToastModule,
+		HomeModule,
+		AuthenticationModule,
+		UsersModule
 	],
-	providers: [],
+	providers: [MessageService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

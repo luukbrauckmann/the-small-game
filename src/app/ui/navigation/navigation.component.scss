@@ -1,0 +1,11 @@
+nav {
+	background: #f8f9fa;
+	border-bottom: 1px solid #dee2e6;
+	min-height: 54px;
+}
+
+:host ::ng-deep .navigation-menu.p-menubar {
+	border: none;
+	background-color: transparent;
+	padding: 0;
+}

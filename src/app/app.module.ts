@@ -19,6 +19,7 @@ import { HomeModule } from './home/home.module';
 import { UsersModule } from './users/users.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { MessageService } from 'primeng/api';
+import { GamesModule } from './games/games.module';
 
 const routes: Routes = [];
 
@@ -40,7 +41,8 @@ const routes: Routes = [];
 		ToastModule,
 		HomeModule,
 		AuthenticationModule,
-		UsersModule
+		UsersModule,
+		GamesModule
 	],
 	providers: [MessageService],
 	bootstrap: [AppComponent]

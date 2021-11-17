@@ -11,7 +11,6 @@ export class DetailComponent implements OnInit, OnDestroy {
 	id = this.activatedRoute.snapshot.paramMap.get('id');
 
 	get item() { return this.service.item; }
-	set item(input) { this.service.item = input; }
 
   constructor(
 		private service: UsersService,

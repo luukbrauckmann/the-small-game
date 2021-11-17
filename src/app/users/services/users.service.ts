@@ -30,7 +30,8 @@ export class UsersService extends AppService {
 	}
 
 	getItem(id: string): void {
-		super.get(id).subscribe((item) => {
+		const params = { id };
+		super.get(params).subscribe((item) => {
 			this.item = new User(item);
 			this.breadcrumbs = [{ label: this.item.displayName, routerLink: `/gebruikers/${this.item.uid}` }];
 		});

@@ -47,10 +47,11 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy(): void {
 		this.service.breadcrumbs = undefined;
+		this.service.itemSubscription.unsubscribe();
 	}
 
 	getItem(): void {
-		if (this.id) this.service.getItem(this.id).subscribe((item) => {
+		if (this.id) this.service.itemSubscription = this.service.getItem(this.id).subscribe((item) => {
 			if (item) {
 				this.item = new Game(item);
 				this.form.patchValue(this.item);

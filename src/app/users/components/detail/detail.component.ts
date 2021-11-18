@@ -23,6 +23,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy(): void {
 		this.service.breadcrumbs = undefined;
+		this.service.itemSubscription.unsubscribe();
 	}
 
 	getItem() {

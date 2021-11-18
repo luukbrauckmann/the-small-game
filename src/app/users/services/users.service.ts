@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MenuItem } from 'primeng/api';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { AppService } from 'src/app/services/app.service';
 import { User } from '../utils/user.model';
 
@@ -15,6 +15,7 @@ export class UsersService extends AppService {
 	get breadcrumbs(): MenuItem[] | undefined { return this._breadcrumbs; };
 	set breadcrumbs(input: MenuItem[] | undefined) { this._breadcrumbs = input; };
 
+	itemSubscription: Subscription = new Subscription();
 	private _item: User | undefined = undefined;
 	get item(): User | undefined { return this._item };
 	set item(input: User | undefined) { this._item = input; };
@@ -29,9 +30,9 @@ export class UsersService extends AppService {
 		this.items = super.get();
 	}
 
-	getItem(id: string): void {
+	getItem(id: string) {
 		const params = { id };
-		super.get(params).subscribe((item) => {
+		this.itemSubscription = super.get(params).subscribe((item) => {
 			this.item = new User(item);
 			this.breadcrumbs = [{ label: this.item.displayName, routerLink: `/gebruikers/${this.item.uid}` }];
 		});

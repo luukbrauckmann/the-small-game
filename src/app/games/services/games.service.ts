@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Game } from '../utils/game.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 
 @Injectable({
@@ -19,6 +19,7 @@ export class GamesService extends AppService {
 	get items(): Observable<Game[]> { return this._items };
 	set items(input: Observable<Game[]>) { this._items = input; };
 
+	itemSubscription: Subscription = new Subscription();
 	private _item: Game | undefined = undefined;
 	get item(): Game | undefined { return this._item };
 	set item(input: Game | undefined) { this._item = input; };

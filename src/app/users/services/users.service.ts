@@ -20,14 +20,15 @@ export class UsersService extends AppService {
 	get item(): User | undefined { return this._item };
 	set item(input: User | undefined) { this._item = input; };
 
-	private _items: Observable<User[]> = of([]);
-	get items(): Observable<User[]> { return this._items };
-	set items(input: Observable<User[]>) { this._items = input; };
+	itemsSubscription: Subscription = new Subscription();
+	private _items: User[] = [];
+	get items():  User[] { return this._items };
+	set items(input:  User[]) { this._items = input; };
 
 	constructor(afs: AngularFirestore) { super(afs); }
 
-	getItems(): void {
-		this.items = super.get();
+	getItems() {
+		return this.itemsSubscription = super.get().subscribe((items) => this.items = items);
 	}
 
 	getItem(id: string) {

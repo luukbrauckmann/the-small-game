@@ -1,5 +1,8 @@
 <nav>
 	<div class="flex align-items-center p-2" *ngIf="isSignedIn">
+		<div>
+			<img src="../../../assets/logo.svg" height="35px" width="35px" alt="Logo">
+		</div>
 		<div class="flex-grow-1">
 			<p-menubar styleClass="navigation-menu" [model]="navMenuItems"></p-menubar>
 		</div>

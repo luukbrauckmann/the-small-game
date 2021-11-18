@@ -3,9 +3,11 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 export class Game {
 	id: string = '';
 	label: string = 'Nieuwe game';
-	type: string = 'cashgame';
+	type: string = 'cash';
 	buyIn: number = 10;
 	date: Date | any = new Date();
+	maxPlayers: number = 10;
+	inviteSend: boolean = false;
 
 	constructor(input: Game | undefined = undefined) {
 		if (input) {
@@ -17,6 +19,7 @@ export class Game {
 				if (input.date instanceof Date) this.date = input.date;
 				else this.date = input.date.toDate();
 			}
+			this.inviteSend = input.inviteSend ? input.inviteSend : false;
 		}
 	}
 }

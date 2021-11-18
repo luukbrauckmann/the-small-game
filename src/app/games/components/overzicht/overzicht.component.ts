@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'primeng/dynamicdialog';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 import { GamesService } from '../../services/games.service';
+import { DialogComponent } from '../../ui/dialog/dialog.component';
+import { Game } from '../../utils/game.model';
 
 @Component({
   selector: 'app-overzicht',
@@ -14,7 +17,8 @@ export class OverzichtComponent implements OnInit {
 
   constructor(
 		private service: GamesService,
-		private auth: AuthenticationService
+		private auth: AuthenticationService,
+		private dialogService: DialogService
 	) { }
 
   ngOnInit(): void {
@@ -23,6 +27,20 @@ export class OverzichtComponent implements OnInit {
 
 	getItems(): void {
 		this.service.getItems();
+	}
+
+	addItem(): void {
+		const ref = this.dialogService.open(DialogComponent, { header: 'Nieuwe game', closable: false });
+		ref.onClose.subscribe((item: Game) => {
+			if (item) this.service.createItem(item);
+		});
+	}
+
+	editItem(item: Game): void {
+		const ref = this.dialogService.open(DialogComponent, { header: item.label, closable: false, data: item });
+		ref.onClose.subscribe((item: Game) => {
+			if (item) this.service.updateItem(item);
+		});
 	}
 
 }

@@ -15,6 +15,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
 import { TableModule } from 'primeng/table';
+import { FormComponent } from './ui/form/form.component';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogComponent } from './ui/dialog/dialog.component';
 
 const routes: Route[] = [
 	{
@@ -32,13 +35,15 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [
-    GamesComponent,
-    OverzichtComponent,
-    DetailComponent
-  ],
-  imports: [
-    CommonModule,
+	declarations: [
+		GamesComponent,
+		OverzichtComponent,
+		DetailComponent,
+		FormComponent,
+  DialogComponent
+	],
+	imports: [
+		CommonModule,
 		RouterModule.forRoot(routes),
 		BreadcrumbModule,
 		CardModule,
@@ -48,8 +53,9 @@ const routes: Route[] = [
 		DropdownModule,
 		InputNumberModule,
 		CalendarModule,
-		TableModule
-  ],
+		TableModule,
+		DynamicDialogModule
+	],
 	providers: [GamesService]
 })
 export class GamesModule { }

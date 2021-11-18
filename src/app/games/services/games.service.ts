@@ -15,14 +15,14 @@ export class GamesService extends AppService {
 	get breadcrumbs(): MenuItem[] | undefined { return this._breadcrumbs; };
 	set breadcrumbs(input: MenuItem[] | undefined) { this._breadcrumbs = input; };
 
-	private _items: Observable<Game[]> = of([]);
-	get items(): Observable<Game[]> { return this._items };
-	set items(input: Observable<Game[]>) { this._items = input; };
+	private _items: Game[] = [];
+	get items(): Game[] { return this._items };
+	set items(input: Game[]) { this._items = input; };
 
 	itemSubscription: Subscription = new Subscription();
-	private _item: Game | undefined = undefined;
-	get item(): Game | undefined { return this._item };
-	set item(input: Game | undefined) { this._item = input; };
+	private _item: Game  = new Game();
+	get item(): Game { return this._item };
+	set item(input: Game) { this._item = input; };
 
   constructor(afs: AngularFirestore) { super(afs); }
 
@@ -36,7 +36,9 @@ export class GamesService extends AppService {
 
 	getItems(): void {
 		const params = { query: (ref: any) => ref.orderBy('date', 'desc') };
-		this.items = super.get(params);
+		super.get(params).subscribe({
+			next: (res) => this.items = res
+		});
 	}
 
 	getItem(id: string): Observable<any> {

@@ -28,6 +28,8 @@ export class AuthenticationService {
 		this.user$ = afa.authState.pipe(
 			switchMap((user: any) => {
 				if (user) {
+					console.log(user);
+
 					return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
 				} else {
 					this.signOut();
@@ -72,7 +74,7 @@ export class AuthenticationService {
 
 	async signIn(email: string, password: string): Promise<any> {
 		return await this.afa.signInWithEmailAndPassword(email, password)
-			.then(async () => {
+			.then(async (res) => {
 				this.user = new User();
 				this.router.navigate(['/']);
 			})

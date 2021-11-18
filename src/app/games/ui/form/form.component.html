@@ -1,0 +1,41 @@
+<form class="p-fluid" [formGroup]="form">
+	<div class="field grid">
+		<label for="label" class="col-12 mb-2 md:col-4 md:mb-0">Label</label>
+		<div class="col-12 md:col-8">
+			<input pInputText id="label" type="text" formControlName="label">
+		</div>
+	</div>
+	<div class="field grid">
+		<label for="type" class="col-12 mb-2 md:col-4 md:mb-0">Type</label>
+		<div class="col-12 md:col-8">
+			<p-dropdown inputId="type" [options]="gameTypes" formControlName="type" appendTo="body"></p-dropdown>
+		</div>
+	</div>
+	<div class="field grid">
+		<label for="buyIn" class="col-12 mb-2 md:col-4 md:mb-0">Buy-in</label>
+		<div class="col-12 md:col-8">
+			<p-inputNumber inputId="buyIn" mode="currency" currency="EUR" locale="nl-NL" formControlName="buyIn"></p-inputNumber>
+		</div>
+	</div>
+	<div class="field grid">
+		<label for="maxPlayers" class="col-12 mb-2 md:col-4 md:mb-0">Max spelers</label>
+		<div class="col-12 md:col-8">
+			<p-inputNumber inputId="maxPlayers" formControlName="maxPlayers"></p-inputNumber>
+		</div>
+	</div>
+	<div class="field grid">
+		<label for="date" class="col-12 mb-2 md:col-4 md:mb-0">Datum</label>
+		<div class="col-12 md:col-8">
+			<p-calendar inputId="date" [showTime]="true" [showIcon]="true" dateFormat="dd-mm-yy" [minDate]="minDate" formControlName="date" appendTo="body"></p-calendar>
+		</div>
+	</div>
+
+	<div class="grid flex-row-reverse">
+		<div class="col-6">
+			<button pButton type="button" label="Opslaan" [disabled]="form.invalid" (click)="onSubmit()"></button>
+		</div>
+		<div class="col-6">
+			<button pButton type="button" class="p-button-secondary" label="Annuleer" (click)="onCancel()"></button>
+		</div>
+	</div>
+</form>

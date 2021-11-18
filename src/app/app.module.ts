@@ -20,6 +20,8 @@ import { UsersModule } from './users/users.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { MessageService } from 'primeng/api';
 import { GamesModule } from './games/games.module';
+import { DialogService } from 'primeng/dynamicdialog';
+import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
 
 const routes: Routes = [];
 
@@ -34,6 +36,7 @@ const routes: Routes = [];
 		BrowserAnimationsModule,
 		RouterModule.forRoot(routes),
 		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireFunctionsModule,
 		MenubarModule,
 		MenuModule,
 		ButtonModule,
@@ -44,7 +47,7 @@ const routes: Routes = [];
 		UsersModule,
 		GamesModule
 	],
-	providers: [MessageService],
+	providers: [MessageService, DialogService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

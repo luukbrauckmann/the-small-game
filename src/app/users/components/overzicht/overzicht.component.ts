@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../utils/user.model';
-import { deleteUser } from "firebase/auth";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
@@ -11,11 +9,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 	styleUrls: ['./overzicht.component.scss']
 })
 export class OverzichtComponent implements OnInit {
-	get items(): Observable<User[]> { return this.service.items; }
+	get items(): User[] { return this.service.items; }
 
 	constructor(
-		private service: UsersService,
-		private afa: AngularFireAuth
+		private service: UsersService
 	) { }
 
 	ngOnInit(): void {

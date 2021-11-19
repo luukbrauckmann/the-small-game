@@ -34,13 +34,13 @@ export class NavigationComponent {
 
 	getMenuItems(): void {
 		this.navMenuItems = [
-			{ icon: 'pi pi-home', label: 'Start', routerLink: '/', visible: this.isSignedIn },
-			{ label: 'Gebruikers', routerLink: '/gebruikers', visible: this.auth.hasOneOfRoles(['admin']) },
-			{ label: 'Games', routerLink: '/games', visible: this.isSignedIn }
+			{ icon: 'pi pi-home', label: 'Start', routerLink: '/', command: () => this.closeMainMenu(), visible: this.isSignedIn },
+			{ label: 'Gebruikers', routerLink: '/gebruikers', command: () => this.closeMainMenu(), visible: this.auth.hasOneOfRoles(['admin']) },
+			{ label: 'Games', routerLink: '/games', command: () => this.closeMainMenu(), visible: this.isSignedIn }
 		];
 		this.userMenuItems = [
-			{ label: 'Account', command: () => { this.displayUserMenu = false; } },
-			{ label: 'Uitloggen', command: () => { this.displayUserMenu = false; this.auth.signOut() } },
+			{ label: 'Account', command: () => this.closeUserMenu() },
+			{ label: 'Uitloggen', command: () => { this.closeUserMenu(); this.auth.signOut() } },
 		];
 	}
 

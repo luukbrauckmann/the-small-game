@@ -43,7 +43,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="p-fluid">
+			<div class="p-fluid" *ngIf="isAdmin">
 				<div>
 					<button pButton type="button" class="p-button-warning" icon="pi pi-send" label="Verstuur uitnodigingen" (click)="sendInvitations()"></button>
 				</div>
@@ -53,13 +53,8 @@
 </div>
 
 <!-- <h1>Uitnodiging {{type}} game.</h1>
-<p>Er is een nieuwe pokergame gepland.</p>
-<div style="
-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-padding: 1rem;
-border-radius: 3px;
-width: 400px;
-">
+<p>Er is een nieuwe poker game gepland.</p>
+<div style="width: 400px; margin-bottom: 1rem;">
 	<div style="margin-bottom: 1rem;">
 		<h2 style="margin: 0px;">Details</h2>
 	</div>
@@ -67,15 +62,9 @@ width: 400px;
 	<div style="
 	display: flex;
 	flex-wrap: wrap;
-	margin-right: -0.5rem;
-	margin-left: -0.5rem;
-	margin-bottom: 1rem;
 	">
 		<div style="
 		flex: 0 0 auto;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		width: 33.3333%;
 		">
 			Naam:
@@ -83,9 +72,6 @@ width: 400px;
 		<div style="
 		flex-grow: 1;
 		flex-basis: 0;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		">
 			{{label}}
 		</div>
@@ -94,15 +80,9 @@ width: 400px;
 	<div style="
 	display: flex;
 	flex-wrap: wrap;
-	margin-right: -0.5rem;
-	margin-left: -0.5rem;
-	margin-bottom: 1rem;
 	">
 		<div style="
 		flex: 0 0 auto;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		width: 33.3333%;
 		">
 			Type:
@@ -110,9 +90,6 @@ width: 400px;
 		<div style="
 		flex-grow: 1;
 		flex-basis: 0;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		">
 			{{type}}
 		</div>
@@ -121,15 +98,9 @@ width: 400px;
 	<div style="
 	display: flex;
 	flex-wrap: wrap;
-	margin-right: -0.5rem;
-	margin-left: -0.5rem;
-	margin-bottom: 1rem;
 	">
 		<div style="
 		flex: 0 0 auto;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		width: 33.3333%;
 		">
 			Buy-in:
@@ -137,9 +108,6 @@ width: 400px;
 		<div style="
 		flex-grow: 1;
 		flex-basis: 0;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		">
 			{{buyIn}}
 		</div>
@@ -148,15 +116,9 @@ width: 400px;
 	<div style="
 	display: flex;
 	flex-wrap: wrap;
-	margin-right: -0.5rem;
-	margin-left: -0.5rem;
-	margin-bottom: 1rem;
 	">
 		<div style="
 		flex: 0 0 auto;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		width: 33.3333%;
 		">
 			Max-spelers:
@@ -164,9 +126,6 @@ width: 400px;
 		<div style="
 		flex-grow: 1;
 		flex-basis: 0;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		">
 			{{maxPlayers}}
 		</div>
@@ -175,15 +134,9 @@ width: 400px;
 	<div style="
 	display: flex;
 	flex-wrap: wrap;
-	margin-right: -0.5rem;
-	margin-left: -0.5rem;
-	margin-bottom: 1rem;
 	">
 		<div style="
 		flex: 0 0 auto;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		width: 33.3333%;
 		">
 			Datum & tijd:
@@ -191,15 +144,13 @@ width: 400px;
 		<div style="
 		flex-grow: 1;
 		flex-basis: 0;
-		padding: 0.5rem;
-		padding-top: 0;
-		padding-bottom: 0;
 		">
 			{{date}}
 		</div>
 	</div>
 
-	<div>
-		<a href="https://thesmallgame.com/games/{{id}}">Uitnodiging accepteren</a>
-	</div>
+</div>
+
+<div>
+	<a href="https://thesmallgame.com/games/{{id}}">Ga naar Uitnodiging</a>
 </div> -->

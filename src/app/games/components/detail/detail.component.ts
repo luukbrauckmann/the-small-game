@@ -8,6 +8,7 @@ import { GamesService } from '../../services/games.service';
 import { Game } from '../../utils/game.model';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 
 @Component({
 	selector: 'app-detail',
@@ -32,6 +33,8 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 	minDate = new Date();
 
+	isAdmin: boolean = this.auth.hasOneOfRoles(['admin']);
+
 	get item() { return this.service.item; }
 	set item(input) { this.service.item = input; }
 
@@ -40,10 +43,10 @@ export class DetailComponent implements OnInit, OnDestroy {
 	constructor(
 		private service: GamesService,
 		private activatedRoute: ActivatedRoute,
-		private mailsService: MailsService,
 		private aff: AngularFireFunctions,
 		private datePipe: DatePipe,
 		private currencyPipe: CurrencyPipe,
+		private auth: AuthenticationService
 	) { }
 
 	ngOnInit(): void {

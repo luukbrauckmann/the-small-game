@@ -9,7 +9,6 @@ export const sendInvitations = functions.https.onCall(async (data) => {
 		const uids = items.docs.map((item: any) => item.data().uid);
 		await db.collection('emails').add({
 			toUids: uids,
-			subject: 'Uitnodiging poker game',
 			template: {
 				name: 'invitation_template',
 				data

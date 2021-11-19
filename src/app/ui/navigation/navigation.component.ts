@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Sidebar } from 'primeng/sidebar';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 import { User } from 'src/app/users/utils/user.model';
 
@@ -9,6 +10,10 @@ import { User } from 'src/app/users/utils/user.model';
 	styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
+	@ViewChild('mainMenuSidebar') mainMenuSidebar: Sidebar | undefined;
+	@ViewChild('userMenuSidebar') userMenuSidebar: Sidebar | undefined;
+
+	displayMainMenu = false;
 	displayUserMenu = false;
 
 	private _navMenuItems: MenuItem[] = [];
@@ -41,6 +46,15 @@ export class NavigationComponent {
 
 	signOut(): void {
 		this.auth.signOut();
+	}
+
+	closeMainMenu(): void {
+		this.mainMenuSidebar?.hide();
+		this.displayMainMenu = false;
+	}
+	closeUserMenu(): void {
+		this.userMenuSidebar?.hide();
+		this.displayUserMenu = false;
 	}
 
 }

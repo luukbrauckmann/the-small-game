@@ -1,11 +1,106 @@
-nav {
-	background: #f8f9fa;
-	border-bottom: 1px solid #dee2e6;
-	min-height: 54px;
-}
-
-:host ::ng-deep .navigation-menu.p-menubar {
-	border: none;
-	background-color: transparent;
-	padding: 0;
+$nav-background: #f8f9fa;
+:host ::ng-deep {
+	nav {
+		background-color: $nav-background;
+		padding: .5rem;
+		border-bottom: solid #dee2e6 1px;
+	}
+	#menu-logo {
+		height: 2.357rem;
+		img {
+			object-fit: contain;
+			cursor: pointer;
+			height: 100%;
+		}
+	}
+	#main-menu-bar {
+		display: none;
+		padding: 0 .5rem;
+		.p-menubar {
+			border: none;
+			padding: 0;
+			.p-menubar-button {
+				display: none;
+			}
+			.p-menuitem-link {
+				align-items: center;
+				cursor: pointer;
+				display: flex;
+				overflow: hidden;
+				position: relative;
+				text-decoration: none;
+			}
+			.p-menubar-root-list {
+				align-items: center;
+				display: flex;
+				position: relative;
+				padding: 0;
+				background:  $nav-background;
+				border: 0;
+				box-shadow: none;
+				width: auto;
+			}
+		}
+	}
+	#main-menu-bar.hideLabels .p-menubar .p-menuitem {
+		.p-menuitem-link {
+			.p-menuitem-icon {
+				margin-right: 0;
+			}
+			.p-menuitem-text {
+				display: none;
+			}
+		}
+		.p-submenu-list .p-menuitem-link {
+			.p-menuitem-icon {
+				margin-right: .5rem;
+			}
+			.p-menuitem-text {
+				display: block;
+			}
+		}
+	}
+	#hide-menu-labels-button {
+		display: none;
+	}
+	#user-menu {
+		#user-menu-button {
+			height: 2.357rem;
+			width: 2.357rem;
+			padding: 0.5rem 0;
+			justify-content: center;
+			.p-button-label {
+				display: none;
+			}
+			.p-button-icon-left {
+				margin-right: 0rem;
+			}
+		}
+	}
+	@media only screen and (min-width: 768px) {
+		#menu-logo {
+			height: 40px;
+		}
+		#main-menu {
+			display: none;
+		}
+		#main-menu-bar,
+		#hide-menu-labels-button {
+			display: block;
+		}
+		#user-menu {
+			#user-menu-button {
+				height: unset;
+				width: unset;
+				padding: 0.5rem 1rem;
+				justify-content: start;
+				.p-button-label {
+					display: block;
+				}
+				.p-button-icon-left {
+					margin-right: .5rem;
+				}
+			}
+		}
+	}
 }

@@ -22,6 +22,7 @@ import { MessageService } from 'primeng/api';
 import { GamesModule } from './games/games.module';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 const routes: Routes = [];
 
@@ -47,7 +48,12 @@ const routes: Routes = [];
 		UsersModule,
 		GamesModule
 	],
-	providers: [MessageService, DialogService],
+	providers: [
+		MessageService,
+		DialogService,
+		DatePipe,
+		CurrencyPipe
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

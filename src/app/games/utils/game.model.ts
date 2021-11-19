@@ -1,5 +1,3 @@
-import { AngularFirestore } from "@angular/fire/compat/firestore";
-
 export class Game {
 	id: string = '';
 	label: string = 'Nieuwe game';

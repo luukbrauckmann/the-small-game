@@ -1,0 +1,53 @@
+<form class="p-fluid" [formGroup]="form">
+
+	<div class="field grid">
+		<label for="nickName" class="col-12 mb-2 md:col-4 md:mb-0">Nickname</label>
+		<div class="col-12 md:col-8">
+			<input pInputText id="nickName" type="text" formControlName="nickName">
+		</div>
+	</div>
+
+	<div class="field grid">
+		<label for="firstName" class="col-12 mb-2 md:col-4 md:mb-0">Voornaam</label>
+		<div class="col-12 md:col-8">
+			<input pInputText id="firstName" type="text" formControlName="firstName">
+		</div>
+	</div>
+
+	<div class="field grid">
+		<label for="lastName" class="col-12 mb-2 md:col-4 md:mb-0">Achternaam</label>
+		<div class="col-12 md:col-8">
+			<input pInputText id="lastName" type="text" formControlName="lastName">
+		</div>
+	</div>
+
+	<div class="field grid">
+		<label for="email" class="col-12 mb-2 md:col-4 md:mb-0">E-mail</label>
+		<div class="col-12 md:col-8">
+			<input pInputText id="email" type="text" formControlName="email">
+		</div>
+	</div>
+
+	<div class="field grid">
+		<label for="roles" class="col-12 mb-2 md:col-4 md:mb-0">Rollen</label>
+		<div class="col-12 md:col-8">
+			<p-multiSelect inputId="type" [options]="roles" formControlName="roles" appendTo="body" [filter]="false"></p-multiSelect>
+		</div>
+	</div>
+
+	<div class="field grid">
+		<label for="status" class="col-12 mb-2 md:col-4 md:mb-0">Status</label>
+		<div class="col-12 md:col-8">
+			<p-dropdown inputId="type" [options]="statuses" formControlName="status" appendTo="body"></p-dropdown>
+		</div>
+	</div>
+
+	<div class="grid flex-row-reverse">
+		<div class="col-6">
+			<button pButton type="button" label="Opslaan" [disabled]="form.invalid" (click)="onSubmit()"></button>
+		</div>
+		<div class="col-6">
+			<button pButton type="button" class="p-button-secondary" label="Annuleer" (click)="onCancel()"></button>
+		</div>
+	</div>
+</form>

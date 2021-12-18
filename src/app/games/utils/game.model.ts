@@ -6,6 +6,7 @@ export class Game {
 	date: Date | any = new Date();
 	maxPlayers: number = 10;
 	inviteSend: boolean = false;
+	status: 'planned' | 'definite' = 'planned';
 
 	constructor(input: Game | undefined = undefined) {
 		if (input) {

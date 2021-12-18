@@ -9,6 +9,7 @@ import { Game } from '../../utils/game.model';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
+import { RegistrationsService } from 'src/app/registrations/services/registrations.service';
 
 @Component({
 	selector: 'app-detail',
@@ -46,7 +47,8 @@ export class DetailComponent implements OnInit, OnDestroy {
 		private aff: AngularFireFunctions,
 		private datePipe: DatePipe,
 		private currencyPipe: CurrencyPipe,
-		private auth: AuthenticationService
+		private auth: AuthenticationService,
+		private registrationService: RegistrationsService
 	) { }
 
 	ngOnInit(): void {
@@ -79,5 +81,12 @@ export class DetailComponent implements OnInit, OnDestroy {
 			error: (error) => console.log(error),
 			complete: () => console.log('Completed')
 		});
+	}
+
+	acceptInvitation() : void {
+		this.registrationService.accept(this.item.id);
+	}
+	declineInvitation() : void {
+		this.registrationService.decline(this.item.id);
 	}
 }

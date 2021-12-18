@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InvitationsComponent } from './invitations.component';
+import { RegistrationsComponent } from './registrations.component';
 import { OverzichtComponent } from './components/overzicht/overzicht.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { AuthenticationGuard } from '../guards/authentication.guard';
-import { Route } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 
 const routes: Route[] = [
 	{
-		path: 'uitnodigingen',
-		component: InvitationsComponent,
+		path: 'registraties',
+		component: RegistrationsComponent,
 		canActivate: [AuthenticationGuard],
 		data: {
 			validation: 'authenticated'
@@ -23,12 +23,13 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
-    InvitationsComponent,
+    RegistrationsComponent,
     OverzichtComponent,
     DetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+		RouterModule.forRoot(routes)
   ]
 })
-export class InvitationsModule { }
+export class RegistrationsModule { }

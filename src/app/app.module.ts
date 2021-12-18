@@ -23,6 +23,7 @@ import { GamesModule } from './games/games.module';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { RegistrationsModule } from './registrations/registrations.module';
 
 const routes: Routes = [];
 
@@ -46,7 +47,8 @@ const routes: Routes = [];
 		HomeModule,
 		AuthenticationModule,
 		UsersModule,
-		GamesModule
+		GamesModule,
+		RegistrationsModule
 	],
 	providers: [
 		MessageService,

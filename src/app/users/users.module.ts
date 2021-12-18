@@ -10,6 +10,12 @@ import { ButtonModule } from 'primeng/button';
 import { ChipModule } from 'primeng/chip';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CardModule } from 'primeng/card';
+import { FormComponent } from './ui/form/form.component';
+import { DialogComponent } from './ui/dialog/dialog.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 const routes: Route[] = [
 	{
@@ -31,7 +37,9 @@ const routes: Route[] = [
 	declarations: [
 		UsersComponent,
 		OverzichtComponent,
-		DetailComponent
+		DetailComponent,
+		FormComponent,
+		DialogComponent
 	],
 	imports: [
 		CommonModule,
@@ -40,7 +48,11 @@ const routes: Route[] = [
 		ButtonModule,
 		ChipModule,
 		BreadcrumbModule,
-		CardModule
+		CardModule,
+		ReactiveFormsModule,
+		InputTextModule,
+		DropdownModule,
+		MultiSelectModule
 	]
 })
 export class UsersModule { }

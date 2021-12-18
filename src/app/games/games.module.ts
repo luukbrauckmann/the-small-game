@@ -40,7 +40,7 @@ const routes: Route[] = [
 		OverzichtComponent,
 		DetailComponent,
 		FormComponent,
-  DialogComponent
+  	DialogComponent
 	],
 	imports: [
 		CommonModule,

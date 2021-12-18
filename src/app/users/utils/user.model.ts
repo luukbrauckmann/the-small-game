@@ -3,15 +3,16 @@ export class User {
 	displayName: string = '';
 	firstName: string = '';
 	lastName: string = '';
+	nickName: string = 'Fish';
 	email: string = '';
 	roles: string[] = [];
-	status: string = 'new';
-	// active, inactive, new, banned
+	status: 'active' | 'inactive' | 'new' | 'banned' = 'new';
 
 	constructor(input: User | undefined = undefined) {
 		if (input) {
 			this.uid = input.uid ? input.uid : '';
 			this.displayName = input.displayName ? input.displayName : '';
+			this.nickName = input.nickName ? input.nickName : 'Fish';
 			this.firstName = input.firstName ? input.firstName : '';
 			this.lastName = input.lastName ? input.lastName : '';
 			this.email = input.email ? input.email : '';

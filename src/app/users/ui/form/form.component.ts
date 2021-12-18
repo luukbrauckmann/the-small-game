@@ -15,7 +15,7 @@ export class FormComponent {
 	form: FormGroup = new FormGroup({
 		uid: new FormControl(''),
 		displayName: new FormControl(''),
-		nickName: new FormControl(''),
+		alias: new FormControl(''),
 		firstName: new FormControl(''),
 		lastName: new FormControl(''),
 		email: new FormControl(''),

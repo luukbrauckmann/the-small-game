@@ -24,6 +24,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { RegistrationsModule } from './registrations/registrations.module';
+import { ResultsModule } from './results/results.module';
 
 const routes: Routes = [];
 
@@ -48,7 +49,8 @@ const routes: Routes = [];
 		AuthenticationModule,
 		UsersModule,
 		GamesModule,
-		RegistrationsModule
+		RegistrationsModule,
+		ResultsModule
 	],
 	providers: [
 		MessageService,

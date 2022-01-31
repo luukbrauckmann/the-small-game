@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Game } from '../utils/game.model';
+import { Game } from '../utils/models/game.model';
 import { Observable, of, Subscription } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 

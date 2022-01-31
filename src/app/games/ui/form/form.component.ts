@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Game } from '../../utils/game.model';
+import { Game } from '../../utils/models/game.model';
 
 @Component({
   selector: 'app-form',

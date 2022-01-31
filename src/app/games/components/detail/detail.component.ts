@@ -2,14 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { MailsService } from 'src/app/mails/services/mails.service';
-import { UsersService } from 'src/app/users/services/users.service';
 import { GamesService } from '../../services/games.service';
-import { Game } from '../../utils/game.model';
+import { Game } from '../../utils/models/game.model';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
-import { RegistrationsService } from 'src/app/registrations/services/registrations.service';
 
 @Component({
 	selector: 'app-detail',
@@ -36,6 +33,8 @@ export class DetailComponent implements OnInit, OnDestroy {
 
 	isAdmin: boolean = this.auth.hasOneOfRoles(['admin']);
 
+	accepted = false;
+
 	get item() { return this.service.item; }
 	set item(input) { this.service.item = input; }
 
@@ -47,8 +46,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 		private aff: AngularFireFunctions,
 		private datePipe: DatePipe,
 		private currencyPipe: CurrencyPipe,
-		private auth: AuthenticationService,
-		private registrationService: RegistrationsService
+		private auth: AuthenticationService
 	) { }
 
 	ngOnInit(): void {
@@ -67,26 +65,47 @@ export class DetailComponent implements OnInit, OnDestroy {
 				this.item = new Game(item);
 				this.form.patchValue(this.item);
 				this.breadcrumbs = [{ label: this.item.label, routerLink: `/games/${this.item.id}` }];
+				const index = this.item.players.findIndex((item) => item.uid === this.auth.user?.uid);
+				this.accepted = index >= 0;
 			}
 		});
 	}
 
 	sendInvitations(): void {
+		this.item.status = 'sending';
+		this.service.updateItem(this.item);
 		const data: any = {...this.item};
 		data.buyIn = this.currencyPipe.transform(data.buyIn, 'EUR');
 		data.date = this.datePipe.transform(data.date, 'dd-MM-yyyy HH:mm');
 		const callable = this.aff.httpsCallable('sendInvitations');
 		callable(data).subscribe({
-			next: (res) => console.log(res),
-			error: (error) => console.log(error),
+			next: (res) => {
+				console.log(res);
+				this.item.status = 'definite';
+				this.service.updateItem(this.item);
+			},
+			error: (error) => {
+				this.item.status = 'planned';
+				this.service.updateItem(this.item);
+			},
 			complete: () => console.log('Completed')
 		});
 	}
 
 	acceptInvitation() : void {
-		this.registrationService.accept(this.item.id);
+		const index = this.item.players.findIndex((item) => item.uid === this.auth.user?.uid);
+		if (index < 0 && this.auth.user) {
+			const name = `${this.auth.user.firstName.charAt(0)}. ${this.auth.user.lastName}`;
+			const player = { uid: this.auth.user.uid, name, alias: this.auth.user.alias };
+			this.item.players.push(player);
+			this.service.updateItem(this.item)
+			.then(() => this.accepted = true);
+		}
 	}
 	declineInvitation() : void {
-		this.registrationService.decline(this.item.id);
+		const index = this.item.players.findIndex((item) => item.uid === this.auth.user?.uid);
+		this.item.players.splice(index, 1);
+		this.service.updateItem(this.item)
+		.then(() => this.accepted = false);
 	}
 }

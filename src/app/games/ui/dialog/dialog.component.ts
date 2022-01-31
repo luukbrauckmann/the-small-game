@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Game } from '../../utils/game.model';
+import { Game } from '../../utils/models/game.model';
 
 @Component({
   selector: 'app-dialog',

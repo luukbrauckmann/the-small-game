@@ -1,2 +1,29 @@
 html { font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol; }
 body { margin: 0; }
+
+.p-card {
+	&.no-header .p-card-content {
+		padding-top: 0rem;
+	}
+	&.no-footer .p-card-content {
+		padding-bottom: 0rem;
+	}
+	.p-card-body {
+		padding: 1rem;
+	}
+}
+
+.p-datatable {
+  box-shadow:
+	0 2px 1px -1px rgb(0 0 0 / 20%),
+	0 1px 1px 0 rgb(0 0 0 / 14%),
+  0 1px 3px 0 rgb(0 0 0 / 12%);
+  border-radius: 3px;
+	overflow: hidden;
+	.p-datatable-header {
+		border-top: none;
+	}
+	.p-datatable-tbody > tr:last-child > td {
+		border: none;
+	}
+}

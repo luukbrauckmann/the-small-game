@@ -35,7 +35,7 @@ export class NavigationComponent {
 	getMenuItems(): void {
 		this.navMenuItems = [
 			{ icon: 'pi pi-home', label: 'Start', routerLink: '/', command: () => this.closeMainMenu(), visible: this.isSignedIn },
-			{ label: 'Gebruikers', routerLink: '/gebruikers', command: () => this.closeMainMenu(), visible: this.auth.hasOneOfRoles(['admin']) },
+			{ icon: 'pi pi-users', label: 'Gebruikers', routerLink: '/gebruikers', command: () => this.closeMainMenu(), visible: this.auth.hasOneOfRoles(['admin']) },
 			{ label: 'Games', routerLink: '/games', command: () => this.closeMainMenu(), visible: this.isSignedIn },
 			{ label: 'Registraties', routerLink: '/registraties', command: () => this.closeMainMenu(), visible: this.isSignedIn }
 		];

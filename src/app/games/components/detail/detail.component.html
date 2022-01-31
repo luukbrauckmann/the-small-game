@@ -1,6 +1,6 @@
-<div class="grid">
+<div class="grid" *ngIf="item.id.length > 0">
 	<div class="col-12 sm:col-10 md:col-6 lg:col-4 xl:col-3">
-		<p-card [header]="item.label">
+		<p-card [header]="item.label" styleClass="no-footer">
 			<div class="p-fluid">
 				<div class="field grid">
 					<div class="col-4">
@@ -34,21 +34,52 @@
 						<span>{{ item.date | date: 'dd-MM-yyyy HH:mm' }}</span>
 					</div>
 				</div>
-				<div class="grid flex-row-reverse">
-					<div class="col">
-						<button pButton type="button" class="p-button-success" label="Accepteren" (click)="acceptInvitation()"></button>
+				<div class="field grid">
+					<div class="col-4">
+						<span>Status</span>
 					</div>
-					<div class="col">
-						<button pButton type="button" class="p-button-danger" label="Afwijzen"></button>
+					<div class="col-8">
+						<span>{{ item.status }}</span>
+					</div>
+				</div>
+				<div class="grid flex-row-reverse" *ngIf="item.status === 'definite'">
+					<div class="col" [ngClass]="{'pb-0': !isAdmin || (item.status === 'definite')}">
+						<button pButton type="button" class="p-button-success" label="Accepteren" [disabled]="accepted"
+							(click)="acceptInvitation()"></button>
+					</div>
+					<div class="col" [ngClass]="{'pb-0': !isAdmin || (item.status === 'definite')}">
+						<button pButton type="button" class="p-button-danger" label="Afwijzen" [disabled]="!accepted"
+							(click)="declineInvitation()"></button>
 					</div>
 				</div>
 			</div>
-			<div class="p-fluid" *ngIf="isAdmin">
+			<div class="p-fluid" *ngIf="isAdmin && (item.status !== 'definite')">
 				<div>
-					<button pButton type="button" class="p-button-warning" icon="pi pi-send" label="Verstuur uitnodigingen" (click)="sendInvitations()"></button>
+					<button pButton type="button" class="p-button-warning" icon="pi pi-send" label="Maak definitief"
+						[loading]="item.status === 'sending'" (click)="sendInvitations()"></button>
 				</div>
 			</div>
 		</p-card>
+	</div>
+
+	<div class="col-12 sm:col-10 md:col-6 lg:col-4 xl:col-3">
+		<p-table [value]="item.players" responsiveLayout="stacked">
+			<ng-template pTemplate="caption">
+				<div class="text-2xl font-bold">Spelers</div>
+			</ng-template>
+			<ng-template pTemplate="header">
+				<tr>
+					<th>Naam</th>
+					<th>Alias</th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-item>
+				<tr>
+					<td>{{item.name}}</td>
+					<td>{{item.alias}}</td>
+				</tr>
+			</ng-template>
+		</p-table>
 	</div>
 </div>
 

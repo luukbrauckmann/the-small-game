@@ -3,7 +3,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 import { GamesService } from '../../services/games.service';
 import { DialogComponent } from '../../ui/dialog/dialog.component';
-import { Game } from '../../utils/game.model';
+import { Game } from '../../utils/models/game.model';
 
 @Component({
   selector: 'app-overzicht',
